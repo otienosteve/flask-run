@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block main %}
+  
+<h3 class='text-center'>Courses</h3>
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-md-5 mx-auto">
+            <div class='table-responsive'>   
+                <table class='table table-hover table-striped '>
+                    <tr>
+                        <th>#</th>
+    <th>Name</th>
+    <th colspan="2">Actions</th>
+</tr>
+{% for course in  courses %}
+  <tr>
+    <td>{{course.id}}</td>
+    <td>{{course.name}}</td>
+    <td> Update</td>
+    <td>Delete</td>
+  </tr>
+{% endfor %}
+    </table>
+    
+    </div>
+    </div>
+    </div>
+</div>
+{% endblock main %}

@@ -1,109 +1,32 @@
-from model import Student, db
+from model import Student, db,Course
 
 from app import app 
 
 with app.app_context():
-    students = [{
-  "id": 1,
-  "first_name": "Myles",
-  "last_name": "Pendrid",
-  "email": "mpendrid0@indiatimes.com"
+    courses = [{
+  "name": "Computer Science",
+  "id": 6
 }, {
-  "id": 2,
-  "first_name": "Theressa",
-  "last_name": "Adelberg",
-  "email": "tadelberg1@ft.com"
+  "name": "Electrical Engineering",
+  "id": 7
 }, {
-  "id": 3,
-  "first_name": "Fairleigh",
-  "last_name": "Greydon",
-  "email": "fgreydon2@i2i.jp"
+  "name": "Mechanical Engineering",
+  "id": 8
 }, {
-  "id": 4,
-  "first_name": "Cristin",
-  "last_name": "Halbord",
-  "email": "chalbord3@ed.gov"
+  "name": "Biology",
+  "id": 9
 }, {
-  "id": 5,
-  "first_name": "Prudence",
-  "last_name": "Couthard",
-  "email": "pcouthard4@netvibes.com"
+  "name": "Chemistry",
+  "id": 10
 }, {
-  "id": 6,
-  "first_name": "Lizbeth",
-  "last_name": "Ort",
-  "email": "lort5@histats.com"
+  "name": "Physics",
+  "id": 11
 }, {
-  "id": 7,
-  "first_name": "Cherie",
-  "last_name": "Breckin",
-  "email": "cbreckin6@phpbb.com"
-}, {
-  "id": 8,
-  "first_name": "Shelli",
-  "last_name": "Menear",
-  "email": "smenear7@howstuffworks.com"
-}, {
-  "id": 9,
-  "first_name": "Shoshanna",
-  "last_name": "Wrefford",
-  "email": "swrefford8@reuters.com"
-}, {
-  "id": 10,
-  "first_name": "Fey",
-  "last_name": "Sired",
-  "email": "fsired9@wordpress.org"
-}, {
-  "id": 11,
-  "first_name": "Corabella",
-  "last_name": "Heugel",
-  "email": "cheugela@qq.com"
-}, {
-  "id": 12,
-  "first_name": "Tony",
-  "last_name": "Capener",
-  "email": "tcapenerb@mapy.cz"
-}, {
-  "id": 13,
-  "first_name": "Bobine",
-  "last_name": "Eyes",
-  "email": "beyesc@tinypic.com"
-}, {
-  "id": 14,
-  "first_name": "Joyous",
-  "last_name": "Persicke",
-  "email": "jpersicked@jugem.jp"
-}, {
-  "id": 15,
-  "first_name": "Dave",
-  "last_name": "Palk",
-  "email": "dpalke@twitter.com"
-}, {
-  "id": 16,
-  "first_name": "Andres",
-  "last_name": "Bollans",
-  "email": "abollansf@tinyurl.com"
-}, {
-  "id": 17,
-  "first_name": "Malva",
-  "last_name": "Shemelt",
-  "email": "mshemeltg@free.fr"
-}, {
-  "id": 18,
-  "first_name": "Prissie",
-  "last_name": "Seemmonds",
-  "email": "pseemmondsh@indiegogo.com"
-}, {
-  "id": 19,
-  "first_name": "Loutitia",
-  "last_name": "Gurr",
-  "email": "lgurri@washingtonpost.com"
-}, {
-  "id": 20,
-  "first_name": "Clevie",
-  "last_name": "De Lascy",
-  "email": "cdelascyj@archive.org"
+  "name": "Mathematics",
+  "id": 12
 }]
-    new_students =[Student(**student) for student in students]
-    db.session.add_all(new_students)
+
+    new_courses = [Course(**course) for course in courses]
+    db.session.add_all(new_courses)
     db.session.commit()
+

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block main %}
+  
+
+<h4 class="text-center">User dashboard</h4>
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-md-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title"> {{students | length }} Students</h5>
+          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+          <a href="{{url_for("view_student")}}" class="btn btn-primary">View Student</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title"> {{courses | length}} Courses</h5>
+          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+          <a href="{{url_for("view_course")}}" class="btn btn-primary">View Courses</a>
+        </div>
+      </div>
+    </div>
+</div>
+
+</div>
+
+{% endblock main %}
