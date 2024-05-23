@@ -1,14 +1,17 @@
 from flask import Flask
 from flask import request
+from flask import flash
 from flask import redirect
 from flask import url_for
 from flask import render_template
-from model import db, Student, Course
+from model import db, Student, Course,BioData
 from flask_migrate import Migrate
-
-app = Flask(__name__)
+from forms import BioDataForm
+app = Flask(__name__,static_folder='/static')
 app.config['SQLALCHEMY_DATABASE_URI'] ='sqlite:///school.db'
+app.config['SECRET_KEY'] ='You"ll never walk alone'
 db.init_app(app)
+
 
 migrate = Migrate(app, db)
 
@@ -62,3 +65,20 @@ def update_student(id):
 def student_details(id):
     student = Student.query.filter_by(id=id).first()
     return render_template('student-details.html',student=student)
+import re
+@app.route('/update_bio_data/<int:id>', methods=['GET','POST'])
+def update_bio_data(id):
+    biodata = BioData.query.filter_by(id=id).first()
+    form = BioDataForm()
+    if request.method == 'POST':
+        if re.findall(r'\D',form.data.get('contact')):
+            flash('Only digits are allowed for contact')
+            return render_template('bio-data.html',biodata=biodata, form=form) 
+        if form.validate_on_submit():
+            for key,value in form.data.items():
+                setattr(biodata, key,value)
+            db.session.add(biodata)
+            db.session.commit()
+        return redirect(url_for('student_details',id=biodata.student_id))
+            
+    return render_template('bio-data.html',biodata=biodata, form=form)

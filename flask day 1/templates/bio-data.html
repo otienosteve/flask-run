@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block main %}
+  
+<div class="container">
+    <div class="row">
+        <div class="col-md-5 mx-auto">
+            <h3> Update Bio data</h3>
+            
+            {% with messages = get_flashed_messages()  %}
+                
+            {% for message in messages  %}
+            <div class="alert alert-danger d-flex align-items-center  alert-dismissible fade show" role="alert">
+                <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                <div>
+                  <p>{{message}}</p>
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+              </div>
+              
+            {% endfor %}
+            {% endwith %}
+                
+            <form action="{{url_for("update_bio_data",id=biodata.id)}}" method="POST">
+                {{form.hidden_tag()}}
+                {{form.hometown.label(class='form-label')}}
+                {{form.hometown(class='form-control',value=biodata.hometown)}} <br>
+                {{form.contact.label(class='form-label')}}
+                {{form.contact(class='form-control', value=biodata.contact)}}
+                <br>
+                {{form.submit(class='btn btn-primary')}}
+                
+                
+                
+            </form>
+            
+        </div>
+        </div>
+        </div>
+
+{% endblock main %}

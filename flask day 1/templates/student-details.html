@@ -8,6 +8,7 @@
 <p> Email :{{student.email}}</p>
 <p>Hometown: {{student.biodata.hometown}}</p>
 <p>Contact :{{student.biodata.contact}}</p>
+<a href="{{url_for("update_bio_data", id=student.biodata.id)}}" class="btn btn-secondary"> Update Bio Dta</a>
 <!-- <p>Biodata :{{student.biodata}}</p>
 <p>courses : {{student.courses}}</p> -->
 {% if student.courses %}

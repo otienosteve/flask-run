@@ -1,10 +1,14 @@
-flask forms
-authentication and RBAC
-Validaton
+flask forms / Validaton
+alembic  and migrations 
 flash messages
------------------
+---------------------
+authentication and RBAC
+---------------------
 
-API /
 
+API / REST
+serialisation
+validation
+--------------
+authenticating APIS
 adding react to flask 
-get
