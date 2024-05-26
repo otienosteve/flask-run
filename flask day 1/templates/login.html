@@ -1,12 +1,10 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
+
 {% block main %}
-  
 <div class="container">
     <div class="row">
         <div class="col-md-5 mx-auto">
-          <span class="bg bg-secondary"> {{user.email}}</span>
-            <h3> Update Bio data</h3>
-            
+            <h3 class="text-center">Create User</h3>
             {% with messages = get_flashed_messages()  %}
                 
             {% for message in messages  %}
@@ -20,22 +18,21 @@
               
             {% endfor %}
             {% endwith %}
-                
-            <form action="{{url_for("update_bio_data",id=biodata.id)}}" method="POST">
+            <form action="{{url_for("login")}}" method="post">
                 {{form.hidden_tag()}}
-                {{form.hometown.label(class='form-label')}}
-                {{form.hometown(class='form-control',value=biodata.hometown)}} <br>
-                {{form.contact.label(class='form-label')}}
-                {{form.contact(class='form-control', value=biodata.contact)}}
-                <br>
+                {{form.email.label(class='form-label')}}
+                {{form.email(class='form-control')}}
+                {{form.password.label(class='form-label')}}
+                {{form.password(class='form-control')}} <br>
                 {{form.submit(class='btn btn-primary')}}
-                
-                
                 
             </form>
             
         </div>
-        </div>
-        </div>
+      </div>
+      </div>    
+
+
 
 {% endblock main %}
+    
