@@ -19,6 +19,11 @@ student_course = db.Table('student_course', db.Model.metadata,
     db.Column('student_id', db.Integer, db.ForeignKey('student.id'))
 )
 
+class TokenBlocklist(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    jti = db.Column(db.String(36), nullable=False, index=True)
+    created_at = db.Column(db.DateTime, nullable=False)
+
 class User(db.Model,SerializerMixin):
     __tablename__ = 'users'
     id = db.Column(db.Integer(), primary_key=True)

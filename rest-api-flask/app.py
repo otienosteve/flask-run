@@ -4,21 +4,25 @@ from models import db, Student
 from flask_cors import CORS
 from flask_restful import Api, Resource, reqparse
 from flask_marshmallow import Marshmallow
-from auth import auth_bp
+from auth import auth_bp, jwt
 import json
-from flask_jwt_extended import JWTManager, jwt_required
-
+from flask_jwt_extended import jwt_required, current_user
+from datetime import timedelta
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI']= 'sqlite:///school.db'
 app.config['SECRET_KEY'] ='you will never walk alone'
+app.config["JWT_TOKEN_LOCATION"] =["headers"]
+app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(minutes=15)
+app.config["JWT_REFRESH_TOKEN_EXPIRES"] = timedelta(days=24)
 db.init_app(app)
 migrate = Migrate(app, db)
 cors = CORS(app, resources={r"*": {"origins": "*"}})
 ma = Marshmallow(app)
 api = Api(app)
+jwt.init_app(app)
 app.register_blueprint(auth_bp)
 
-jwt = JWTManager(app)
+
 def former():
 
 # @app.route('/')
@@ -115,7 +119,7 @@ class Students(Resource):
         students_json = students_schema.dump(students)
         return students_json
 
-    @jwt_required
+    @jwt_required()
     def post(self):
         data = post_payload.parse_args()
         new_student = Student(**data)
